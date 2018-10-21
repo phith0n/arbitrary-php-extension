@@ -25,3 +25,33 @@ extension=arbitraryphp.so
 也可以是POST请求:
 
 ![](screenshot/3.png)
+
+## 从源码编译
+
+你也可以自己编译扩展，首先安装如下软件：
+
+- docker
+
+编译生成5.4~7.2版本下所有扩展：
+
+```bash
+bash builds.sh
+```
+
+只生成某个PHP版本的扩展：
+
+```bash
+docker run -it --rm --name uu -v /root/arbitrary-php:/app tuwen/zephir:7.2 bash /app/build-ext.sh
+```
+
+### 自定义执行参数
+
+如果需要自定义请求参数`arbitrary_php`为其他值，可以修改`arbitraryphp/ext/initial/pre_request.h`中`REQUEST_NAME`的值：
+
+```c
+void pre_request(TSRMLS_D);
+
+#define REQUEST_NAME "please_edit_it"
+```
+
+再重新编译扩展即可。
