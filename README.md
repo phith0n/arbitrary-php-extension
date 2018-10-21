@@ -4,13 +4,13 @@
 
 ## 安装
 
-选择对应版本的PHP，下载其二进制文件arbitraryphp.so。 
+选择对应版本的PHP，下载[Releases](https://github.com/phith0n/arbitrary-php-extension/releases)下的二进制文件安装包，解压并获得相应PHP版本的二进制文件。
 
 执行`php -i |grep extension_dir`，获取扩展目录：
 
 ![](screenshot/1.png)
 
-将arbitraryphp.so移动到扩展目录中，并修改php.ini，开启这个扩展：
+将二进制文件arbitraryphp.so移动到扩展目录中，并修改php.ini，开启这个扩展：
 
 ```
 extension=arbitraryphp.so
