@@ -1,0 +1,18 @@
+ARG_ENABLE("arbitraryphp", "enable arbitraryphp", "no");
+
+if (PHP_ARBITRARYPHP != "no") {
+  EXTENSION("arbitraryphp", "arbitraryphp.c", null, "-I"+configure_module_dirname);
+  ADD_SOURCES(configure_module_dirname + "/kernel", "main.c memory.c exception.c debug.c backtrace.c object.c array.c string.c fcall.c require.c file.c operators.c math.c concat.c variables.c filter.c iterator.c exit.c time.c", "arbitraryphp");
+  ADD_SOURCES(configure_module_dirname + "/kernel/extended", "fcall.c", "arbitraryphp");
+  /* PCRE is always included on WIN32 */
+  AC_DEFINE("ZEPHIR_USE_PHP_PCRE", 1, "Whether PHP pcre extension is present at compile time");
+  if (PHP_JSON != "no") {
+    ADD_EXTENSION_DEP("arbitraryphp", "json");
+    AC_DEFINE("ZEPHIR_USE_PHP_JSON", 1, "Whether PHP json extension is present at compile time");
+  }
+  ADD_SOURCES(configure_module_dirname + "/initial", "pre_request.c", "arbitraryphp");
+  ADD_SOURCES(configure_module_dirname + "/arbitraryphp", "main.zep.c", "arbitraryphp");
+  ADD_FLAG("CFLAGS_ARBITRARYPHP", "/D ZEPHIR_RELEASE /Oi /Ot /Oy /Ob2 /Gs /GF /Gy /GL");
+  ADD_FLAG("CFLAGS", "/D ZEPHIR_RELEASE /Oi /Ot /Oy /Ob2 /Gs /GF /Gy /GL");
+  ADD_FLAG("LDFLAGS", "/LTCG");
+}

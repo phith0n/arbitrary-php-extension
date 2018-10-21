@@ -1,0 +1,7 @@
+.idea/
+.vscode/
+
+lib/
+
+arbitraryphp/compile.log
+arbitraryphp/compile-errors.log
