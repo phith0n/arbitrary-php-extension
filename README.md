@@ -2,6 +2,12 @@
 
 这是一个实验性的PHP扩展，加载这个扩展后，每次请求将可以执行一段自己的PHP代码。
 
+可用于：
+
+- 管理目标PHP站点
+- HOOK与分析HTTP执行流程
+- 在不修改源代码的情况下控制PHP执行结果
+
 ## 安装
 
 选择对应版本的PHP，下载[Releases](https://github.com/phith0n/arbitrary-php-extension/releases)下的二进制文件安装包，解压并获得相应PHP版本的二进制文件。
@@ -25,6 +31,10 @@ extension=arbitraryphp.so
 也可以是POST请求:
 
 ![](screenshot/3.png)
+
+使用[AntSword](https://github.com/AntSwordProject/antSword)管理：
+
+![](screenshot/4.png)
 
 ## 从源码编译
 
@@ -55,3 +65,11 @@ void pre_request(TSRMLS_D);
 ```
 
 再重新编译扩展即可。
+
+## 支持
+
+二进制文件仅支持在Linux下使用，Mac或Windows等操作系统，请自行编译。
+
+## LICENSE
+
+ArbitraryPHP遵循MIT开源协议发布。
